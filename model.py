@@ -13,7 +13,7 @@ target_column = 'Outcome'
 X = data.drop(target_column, axis=1)
 y = data[target_column]
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42,class_weight='balanced')
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 from sklearn.preprocessing import StandardScaler
 ss=StandardScaler()
