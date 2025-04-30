@@ -52,5 +52,10 @@ class_mapping = {
 }
 Predicted_class = class_mapping[prediction[0]]
 
+probabilities = model.predict_proba(input_data_scaled)
+confidence = probabilities[0][prediction[0]] * 100
+st.write(f"Prediction confidence: {confidence:.2f}%")
+
+
 st.write("Predicted class:", Predicted_class)
 st.write("The person have diabetes :/ " if prediction[0] == 1 else "The person does not have diabetes :)")
