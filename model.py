@@ -5,15 +5,25 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 
 #load data
-data = pd.read_csv('diabetes.csv')
+df = pd.read_csv('diabetes.csv')
 
 st.title("Diabetes Prediction App")
 
-target_column = 'Outcome'
-X = data.drop(target_column, axis=1)
-y = data[target_column]
+#preprocess data
+columns_to_fill = ['Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI']
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+for col in columns_to_fill:
+    df[col] = df[col].replace(0, df[col].median())
+
+target_column = 'Outcome'
+X = df.drop(target_column, axis=1)
+y = df[target_column]
+
+from imblearn.over_sampling import SMOTE
+oversample=SMOTE()
+X_sampled,y_sampled=oversample.fit_resample(X,y)
+
+X_train, X_test, y_train, y_test = train_test_split(X_sampled,y_sampled , test_size=0.2, random_state=42)
 
 from sklearn.preprocessing import StandardScaler
 ss=StandardScaler()
@@ -54,7 +64,7 @@ Predicted_class = class_mapping[prediction[0]]
 
 probabilities = model.predict_proba(input_data_scaled)
 confidence = probabilities[0][prediction[0]] * 100
-#st.write(f"Prediction confidence: {confidence:.2f}%")
+st.write(f"Prediction confidence: {confidence:.2f}%")
 
 
 st.write("Predicted class:", Predicted_class)
