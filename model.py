@@ -13,7 +13,11 @@ target_column = 'Outcome'
 X = data.drop(target_column, axis=1)
 y = data[target_column]
 
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+cols_with_zeros = ['Glucose', 'BloodPressure', 'SkinThickness', 'Insulin', 'BMI']
+data[cols_with_zeros] = data[cols_with_zeros].replace(0, np.nan)
+data.fillna(data.median(), inplace=True)
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42,class_weight='balanced')
 
 from sklearn.preprocessing import StandardScaler
 ss=StandardScaler()
