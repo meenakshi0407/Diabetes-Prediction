@@ -37,7 +37,8 @@ Age = st.sidebar.text_input("Age", "0")
 
 input_data = np.array([[float(Pregnancies), float(Glucose), float(BloodPressure),float(SkinThickness), float(Insulin), float(BMI),float(DiabetesPedigreeFunction), float(Age)]])
 
-prediction = model.predict(input_data)
+input_data_scaled = ss.transform(input_data)
+prediction = model.predict(input_data_scaled)
 
 from sklearn.metrics import accuracy_score
 
