@@ -42,7 +42,7 @@ prediction = model.predict(input_data)
 from sklearn.metrics import accuracy_score
 
 accuracy = accuracy_score(y_test, model.predict(x_test_scaled))
-st.write("Model Accuracy:", accuracy * 100, "%")
+#st.write("Model Accuracy:", accuracy * 100, "%")
 
 
 class_mapping = {
