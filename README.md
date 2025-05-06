@@ -4,9 +4,9 @@ Streamlit web app that predicts Diabetes using a Random Forest Classifier. Users
 
 Installation & Run Locally - 
 Clone the repository:
-git clone https://github.com/meenakshi0407/Diabetes-Prediction.git
-cd Diabetes-Prediction
-pip install -r requirements.txt
+git clone https://github.com/meenakshi0407/Diabetes-Prediction.git<br>
+cd Diabetes-Prediction<br>
+pip install -r requirements.txt<br>
 
 
 Run - streamlit run model.py
