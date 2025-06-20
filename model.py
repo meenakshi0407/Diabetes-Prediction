@@ -3,6 +3,8 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
+from imblearn.over_sampling import SMOTE
+
 
 #load data
 df = pd.read_csv('diabetes.csv')
@@ -19,7 +21,7 @@ target_column = 'Outcome'
 X = df.drop(target_column, axis=1)
 y = df[target_column]
 
-from imblearn.over_sampling import SMOTE
+
 oversample=SMOTE()
 X_sampled,y_sampled=oversample.fit_resample(X,y)
 
